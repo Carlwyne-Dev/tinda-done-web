@@ -103,7 +103,7 @@ function App() {
                 Your Sari-Sari Store, <br />Fully Digital.
               </motion.h1>
               <motion.p variants={item}>
-                TindaDone is the ultimate offline-first Point of Sale & Inventory tracker designed specifically for micro-businesses. Throw away the messy notebooks.
+                TindaDone is a premium, offline-first mobile Point-of-Sale (POS) system built for sari-sari stores and micro-businesses. Spend less time managing. Spend more time growing.
               </motion.p>
               <motion.a 
                 href="#download" 
@@ -154,7 +154,7 @@ function App() {
                     }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                   >
-                    <img src="/terminal.jfif" alt="TindaDone POS" />
+                    <img src="/main_pic.jpg" alt="TindaDone POS" />
                   </motion.div>
                 </div>
               ) : (
@@ -194,7 +194,7 @@ function App() {
                     }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                   >
-                    <img src="/terminal.jfif" alt="TindaDone POS" />
+                    <img src="/main_pic.jpg" alt="TindaDone POS" />
                   </motion.div>
                 </div>
               )}
@@ -206,18 +206,18 @@ function App() {
           <h2 className="sr-only">Key Features of TindaDone</h2>
           <motion.div className="feature-card" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div className="feature-icon"><Smartphone size={28} /></div>
-            <h3>Scan & Sell</h3>
-            <p style={{ color: 'var(--text-muted)' }}>Fast barcode scanning using your phone's camera. Process transactions in seconds.</p>
+            <h3>Smart Selling & Checkout</h3>
+            <p style={{ color: 'var(--text-muted)' }}>Lightning-fast barcode scanning and bulk mode support. Process both Cash and GCash transactions instantly.</p>
           </motion.div>
           <motion.div className="feature-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <div className="feature-icon"><BookOpen size={28} /></div>
-            <h3>Utang Ledger</h3>
-            <p style={{ color: 'var(--text-muted)' }}>Keep a clean, trust-based record of customer credits. Never lose an unpaid tab again.</p>
+            <h3>Utang (Credit) Management</h3>
+            <p style={{ color: 'var(--text-muted)' }}>Log partial payments, set due reminders, and checkout directly to Utang without manual debt tracking.</p>
           </motion.div>
           <motion.div className="feature-card" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
             <div className="feature-icon"><BarChart3 size={28} /></div>
-            <h3>Smart Analytics</h3>
-            <p style={{ color: 'var(--text-muted)' }}>Get daily, monthly, and yearly insights on your revenue and net profit automatically.</p>
+            <h3>Profit & Inventory Tracking</h3>
+            <p style={{ color: 'var(--text-muted)' }}>Track exact profit per item, set low-stock threshold alerts, and auto-generate daily and monthly reports.</p>
           </motion.div>
         </section>
 
@@ -313,7 +313,10 @@ function App() {
             <ShieldCheck size={18} color="#10b981" /> 100% Secure & Offline
           </p>
           <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-muted)' }}>
-            Having trouble? <a href="https://drive.google.com/uc?export=download&id=1m-1c5wd0YfxCFy1qTKqylNHAfM2QnzK_" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Download via Google Drive instead</a>
+            Having trouble? <a href="https://drive.google.com/uc?export=download&id=1T2NHH0MbcgjRFCtEKVPZuGggxe3Uccfr" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Download via Google Drive instead</a>
+          </p>
+          <p style={{ marginTop: '12px', fontSize: '12px', color: 'var(--text-muted)', maxWidth: '400px', margin: '12px auto 0' }}>
+            *If your phone blocks the installation or shows a warning, tap <strong>"More details"</strong> and select <strong>"Install anyway"</strong> to proceed.
           </p>
         </div>
       </section>
@@ -325,7 +328,7 @@ function App() {
           </h2>
           <motion.div className="faq-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h3>Is TindaDone completely offline?</h3>
-            <p>Yes! TindaDone saves all your inventory and sales data directly on your device. You don't need an internet connection to run your store, making it fast and reliable.</p>
+            <p>Yes! Core operations like selling, inventory updates, checkout, and credit logging work 100% offline. An internet connection is only required for trial validation, license activation, and optional cloud backups.</p>
           </motion.div>
           <motion.div className="faq-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <h3>What happens after the 7-day trial?</h3>
