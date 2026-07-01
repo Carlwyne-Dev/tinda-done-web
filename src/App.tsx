@@ -313,7 +313,7 @@ function App() {
             <ShieldCheck size={18} color="#10b981" /> 100% Secure & Offline
           </p>
           <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-muted)' }}>
-            Having trouble? <a href="https://drive.google.com/uc?export=download&id=1T2NHH0MbcgjRFCtEKVPZuGggxe3Uccfr" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Download via Google Drive instead</a>
+            Having trouble? <a href="https://drive.google.com/uc?export=download&id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Download via Google Drive instead</a>
           </p>
           <p style={{ marginTop: '12px', fontSize: '12px', color: 'var(--text-muted)', maxWidth: '400px', margin: '12px auto 0' }}>
             *If your phone blocks the installation or shows a warning, tap <strong>"More details"</strong> and select <strong>"Install anyway"</strong> to proceed.
