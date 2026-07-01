@@ -376,7 +376,7 @@ function App() {
           <p style={{ marginTop: '32px', fontSize: '14px' }}>&copy; {new Date().getFullYear()} TindaDone. All rights reserved.</p>
         </footer>
       </div>
-      {/* Google Drive Download Warning Modal */}
+      {/* Google Drive Download Info Modal */}
       <AnimatePresence>
         {showDownloadModal && (
           <motion.div
@@ -385,7 +385,7 @@ function App() {
             exit={{ opacity: 0 }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              backgroundColor: 'rgba(0,0,0,0.7)',
+              backgroundColor: 'rgba(0,0,0,0.6)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               padding: '20px',
               backdropFilter: 'blur(6px)',
@@ -393,85 +393,65 @@ function App() {
             onClick={() => setShowDownloadModal(false)}
           >
             <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              initial={{ scale: 0.88, opacity: 0, y: 16 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              exit={{ scale: 0.88, opacity: 0, y: 16 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
               style={{
                 background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-                border: '1px solid rgba(16,185,129,0.3)',
+                border: '1px solid rgba(16,185,129,0.25)',
                 borderRadius: '24px',
                 padding: '36px 32px',
-                maxWidth: '420px',
+                maxWidth: '400px',
                 width: '100%',
                 boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
                 position: 'relative',
+                textAlign: 'center',
               }}
             >
-              {/* Close */}
               <button
                 onClick={() => setShowDownloadModal(false)}
                 style={{
                   position: 'absolute', top: '16px', right: '16px',
-                  background: 'rgba(255,255,255,0.08)', border: 'none',
-                  borderRadius: '50%', width: '32px', height: '32px',
+                  background: 'rgba(255,255,255,0.06)', border: 'none',
+                  borderRadius: '50%', width: '30px', height: '30px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   cursor: 'pointer', color: 'var(--text-muted)',
                 }}
               >
-                <X size={16} />
+                <X size={15} />
               </button>
 
-              {/* Icon */}
+              {/* Friendly icon */}
               <div style={{
-                width: '56px', height: '56px', borderRadius: '16px',
-                background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.3)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '20px',
-              }}>
-                <AlertTriangle size={28} color="#fbbf24" />
-              </div>
+                fontSize: '40px', marginBottom: '16px', lineHeight: 1,
+              }}>📥</div>
 
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#fff' }}>
-                Heads up before downloading!
+              <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '10px', color: '#fff' }}>
+                One quick thing!
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.6', marginBottom: '10px' }}>
-                Google Drive may show a <strong style={{ color: '#fbbf24' }}>"Can't scan for viruses"</strong> warning because the APK file is large. This is completely normal and expected.
-              </p>
-              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '28px' }}>
-                TindaDone is 100% safe. Simply click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> on the Google Drive page to proceed.
+              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.7', marginBottom: '28px' }}>
+                Google Drive will show a message saying it <em>can't scan the file for viruses</em> since the APK is large — that's totally normal! Just click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> and you're good to go. 🎉
               </p>
 
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button
-                  onClick={() => setShowDownloadModal(false)}
-                  style={{
-                    flex: 1, padding: '13px', borderRadius: '14px',
-                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
-                    color: 'var(--text-muted)', fontSize: '15px', fontWeight: 600, cursor: 'pointer',
-                  }}
-                >
-                  Cancel
-                </button>
-                <a
-                  href={DRIVE_LINK}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => setShowDownloadModal(false)}
-                  style={{
-                    flex: 2, padding: '13px', borderRadius: '14px',
-                    background: 'linear-gradient(135deg, #10b981, #059669)',
-                    color: '#fff', fontSize: '15px', fontWeight: 700,
-                    textDecoration: 'none', display: 'flex',
-                    alignItems: 'center', justifyContent: 'center', gap: '8px',
-                    boxShadow: '0 4px 20px rgba(16,185,129,0.4)',
-                  }}
-                >
-                  <Download size={18} />
-                  Download Anyway
-                </a>
-              </div>
+              <a
+                href={DRIVE_LINK}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setShowDownloadModal(false)}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                  padding: '14px 24px', borderRadius: '14px',
+                  background: 'linear-gradient(135deg, #10b981, #059669)',
+                  color: '#fff', fontSize: '16px', fontWeight: 700,
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 20px rgba(16,185,129,0.4)',
+                }}
+              >
+                <Download size={18} />
+                Take me to the download
+              </a>
             </motion.div>
           </motion.div>
         )}
