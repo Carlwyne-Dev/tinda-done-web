@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail } from 'lucide-react';
-import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, AlertTriangle, X } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 'framer-motion';
 
 function App() {
   const { scrollY } = useScroll();
@@ -26,6 +26,14 @@ function App() {
 
   // Desktop: hover-driven swap
   const [isHovered, setIsHovered] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+
+  const DRIVE_LINK = 'https://drive.google.com/file/d/1tHpnRDTkxTv3hVwIWv85Jv9JZCVQX5us/view?usp=sharing';
+
+  const handleDownloadClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowDownloadModal(true);
+  };
 
   // Carousel
   const screenshotScrollRef = useRef<HTMLDivElement>(null);
@@ -86,6 +94,7 @@ function App() {
             href="#download" 
             className="btn-primary get-apk-btn" 
             style={{ padding: '10px 20px', fontSize: '14px' }}
+            onClick={handleDownloadClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -109,6 +118,7 @@ function App() {
                 href="#download" 
                 className="btn-primary"
                 variants={item}
+                onClick={handleDownloadClick}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -300,10 +310,11 @@ function App() {
             Download the official TindaDone APK below. You get full access to all features completely free for 7 days. After the trial, simply purchase a permanent activation key to keep your data safe and unlock lifetime access.
           </motion.p>
           <motion.a 
-            href="https://drive.google.com/uc?export=download&id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a" 
+            href={DRIVE_LINK} 
             className="btn-primary" 
             target="_blank"
             rel="noreferrer"
+            onClick={handleDownloadClick}
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
             whileTap={{ scale: 0.95 }}
           >
@@ -365,6 +376,106 @@ function App() {
           <p style={{ marginTop: '32px', fontSize: '14px' }}>&copy; {new Date().getFullYear()} TindaDone. All rights reserved.</p>
         </footer>
       </div>
+      {/* Google Drive Download Warning Modal */}
+      <AnimatePresence>
+        {showDownloadModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 9999,
+              backgroundColor: 'rgba(0,0,0,0.7)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '20px',
+              backdropFilter: 'blur(6px)',
+            }}
+            onClick={() => setShowDownloadModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+                border: '1px solid rgba(16,185,129,0.3)',
+                borderRadius: '24px',
+                padding: '36px 32px',
+                maxWidth: '420px',
+                width: '100%',
+                boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
+                position: 'relative',
+              }}
+            >
+              {/* Close */}
+              <button
+                onClick={() => setShowDownloadModal(false)}
+                style={{
+                  position: 'absolute', top: '16px', right: '16px',
+                  background: 'rgba(255,255,255,0.08)', border: 'none',
+                  borderRadius: '50%', width: '32px', height: '32px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', color: 'var(--text-muted)',
+                }}
+              >
+                <X size={16} />
+              </button>
+
+              {/* Icon */}
+              <div style={{
+                width: '56px', height: '56px', borderRadius: '16px',
+                background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.3)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: '20px',
+              }}>
+                <AlertTriangle size={28} color="#fbbf24" />
+              </div>
+
+              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#fff' }}>
+                Heads up before downloading!
+              </h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.6', marginBottom: '10px' }}>
+                Google Drive may show a <strong style={{ color: '#fbbf24' }}>"Can't scan for viruses"</strong> warning because the APK file is large. This is completely normal and expected.
+              </p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '28px' }}>
+                TindaDone is 100% safe. Simply click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> on the Google Drive page to proceed.
+              </p>
+
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={() => setShowDownloadModal(false)}
+                  style={{
+                    flex: 1, padding: '13px', borderRadius: '14px',
+                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+                    color: 'var(--text-muted)', fontSize: '15px', fontWeight: 600, cursor: 'pointer',
+                  }}
+                >
+                  Cancel
+                </button>
+                <a
+                  href={DRIVE_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setShowDownloadModal(false)}
+                  style={{
+                    flex: 2, padding: '13px', borderRadius: '14px',
+                    background: 'linear-gradient(135deg, #10b981, #059669)',
+                    color: '#fff', fontSize: '15px', fontWeight: 700,
+                    textDecoration: 'none', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', gap: '8px',
+                    boxShadow: '0 4px 20px rgba(16,185,129,0.4)',
+                  }}
+                >
+                  <Download size={18} />
+                  Download Anyway
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
