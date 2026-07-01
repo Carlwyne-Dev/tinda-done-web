@@ -431,8 +431,11 @@ function App() {
               <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '10px', color: '#fff' }}>
                 One quick thing!
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.7', marginBottom: '28px' }}>
-                Google Drive will show a message saying it <em>can't scan the file for viruses</em> since the APK is large — that's totally normal! Just click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> and you're good to go. 🎉
+              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.7', marginBottom: '12px' }}>
+                Google Drive will show a page that says <strong style={{ color: '#fff' }}>"Google Drive has detected issues with your download."</strong>
+              </p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.7', marginBottom: '28px' }}>
+                Don't worry — this just means the file is too large for Google to auto-scan. The app is completely safe. Just click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> on that page and you're all set! 🎉
               </p>
 
               <a
