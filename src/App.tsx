@@ -310,11 +310,10 @@ function App() {
             Download the official TindaDone APK below. You get full access to all features completely free for 7 days. After the trial, simply purchase a permanent activation key to keep your data safe and unlock lifetime access.
           </motion.p>
           <motion.a 
-            href={DRIVE_LINK} 
+            href="https://drive.usercontent.google.com/download?id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a&export=download&authuser=0&confirm=t" 
             className="btn-primary" 
             target="_blank"
             rel="noreferrer"
-            onClick={handleDownloadClick}
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
             whileTap={{ scale: 0.95 }}
           >
