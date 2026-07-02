@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, AlertTriangle, X } from 'lucide-react';
+import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 'framer-motion';
 
 function App() {
@@ -26,14 +26,6 @@ function App() {
 
   // Desktop: hover-driven swap
   const [isHovered, setIsHovered] = useState(false);
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
-
-  const DRIVE_LINK = 'https://drive.google.com/file/d/1tHpnRDTkxTv3hVwIWv85Jv9JZCVQX5us/view?usp=sharing';
-
-  const handleDownloadClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setShowDownloadModal(true);
-  };
 
   // Carousel
   const screenshotScrollRef = useRef<HTMLDivElement>(null);
@@ -91,10 +83,11 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
           <motion.a 
-            href="#download" 
+            href="https://drive.usercontent.google.com/download?id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a&export=download&authuser=0&confirm=t" 
             className="btn-primary get-apk-btn" 
             style={{ padding: '10px 20px', fontSize: '14px' }}
-            onClick={handleDownloadClick}
+            target="_blank"
+            rel="noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -375,90 +368,7 @@ function App() {
           <p style={{ marginTop: '32px', fontSize: '14px' }}>&copy; {new Date().getFullYear()} TindaDone. All rights reserved.</p>
         </footer>
       </div>
-      {/* Google Drive Download Info Modal */}
-      <AnimatePresence>
-        {showDownloadModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'fixed', inset: 0, zIndex: 9999,
-              backgroundColor: 'rgba(0,0,0,0.6)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              padding: '20px',
-              backdropFilter: 'blur(6px)',
-            }}
-            onClick={() => setShowDownloadModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.88, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.88, opacity: 0, y: 16 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-                border: '1px solid rgba(16,185,129,0.25)',
-                borderRadius: '24px',
-                padding: '36px 32px',
-                maxWidth: '400px',
-                width: '100%',
-                boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
-                position: 'relative',
-                textAlign: 'center',
-              }}
-            >
-              <button
-                onClick={() => setShowDownloadModal(false)}
-                style={{
-                  position: 'absolute', top: '16px', right: '16px',
-                  background: 'rgba(255,255,255,0.06)', border: 'none',
-                  borderRadius: '50%', width: '30px', height: '30px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  cursor: 'pointer', color: 'var(--text-muted)',
-                }}
-              >
-                <X size={15} />
-              </button>
-
-              {/* Friendly icon */}
-              <div style={{
-                fontSize: '40px', marginBottom: '16px', lineHeight: 1,
-              }}>📥</div>
-
-              <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '10px', color: '#fff' }}>
-                One quick thing!
-              </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.7', marginBottom: '12px' }}>
-                Google Drive will show a page that says <strong style={{ color: '#fff' }}>"Google Drive has detected issues with your download."</strong>
-              </p>
-              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.7', marginBottom: '28px' }}>
-                Don't worry — this just means the file is too large for Google to auto-scan. The app is completely safe. Just click <strong style={{ color: '#10b981' }}>"Download anyway"</strong> on that page and you're all set! 🎉
-              </p>
-
-              <a
-                href={DRIVE_LINK}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => setShowDownloadModal(false)}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                  padding: '14px 24px', borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
-                  color: '#fff', fontSize: '16px', fontWeight: 700,
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 20px rgba(16,185,129,0.4)',
-                }}
-              >
-                <Download size={18} />
-                Take me to the download
-              </a>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      </>
   );
 }
 
