@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail } from 'lucide-react';
-import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 
 function App() {
   const { scrollY } = useScroll();
@@ -106,10 +106,9 @@ function App() {
                 TindaDone is a premium, offline-first mobile Point-of-Sale (POS) system built for sari-sari stores and micro-businesses. Spend less time managing. Spend more time growing.
               </motion.p>
               <motion.a 
-                href="#download" 
+                href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
                 className="btn-primary"
                 variants={item}
-                onClick={handleDownloadClick}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
                 whileTap={{ scale: 0.95 }}
               >
