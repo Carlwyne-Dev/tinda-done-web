@@ -83,11 +83,9 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
           <motion.a 
-            href="https://drive.usercontent.google.com/download?id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a&export=download&authuser=0&confirm=t" 
+            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
             className="btn-primary get-apk-btn" 
             style={{ padding: '10px 20px', fontSize: '14px' }}
-            target="_blank"
-            rel="noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -303,10 +301,8 @@ function App() {
             Download the official TindaDone APK below. You get full access to all features completely free for 7 days. After the trial, simply purchase a permanent activation key to keep your data safe and unlock lifetime access.
           </motion.p>
           <motion.a 
-            href="https://drive.usercontent.google.com/download?id=1n6hLwDRd3CwjfWi6rrBMbLACEYxeAV8a&export=download&authuser=0&confirm=t" 
+            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
             className="btn-primary" 
-            target="_blank"
-            rel="noreferrer"
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
             whileTap={{ scale: 0.95 }}
           >
