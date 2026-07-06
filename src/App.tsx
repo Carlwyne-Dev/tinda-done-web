@@ -83,7 +83,7 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
           <motion.a 
-            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
+            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
             className="btn-primary get-apk-btn" 
             style={{ padding: '10px 20px', fontSize: '14px' }}
             whileHover={{ scale: 1.05 }}
@@ -106,7 +106,7 @@ function App() {
                 TindaDone is a premium, offline-first mobile Point-of-Sale (POS) system built for sari-sari stores and micro-businesses. Spend less time managing. Spend more time growing.
               </motion.p>
               <motion.a 
-                href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
+                href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
                 className="btn-primary"
                 variants={item}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
@@ -300,7 +300,7 @@ function App() {
             Download the official TindaDone APK below. You get full access to all features completely free for 7 days. After the trial, simply purchase a permanent activation key to keep your data safe and unlock lifetime access.
           </motion.p>
           <motion.a 
-            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.0/tindadone.apk" 
+            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
             className="btn-primary" 
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
             whileTap={{ scale: 0.95 }}
