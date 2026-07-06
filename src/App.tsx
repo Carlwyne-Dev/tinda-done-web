@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, History, ChevronDown } from 'lucide-react';
+import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, History, ChevronDown, X } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 'framer-motion';
 
 const AccordionItem = ({ title, children, isChangelog = false, badge = null, isInitialOpen = false }: any) => {
@@ -63,6 +63,10 @@ function App() {
   // Desktop: hover-driven swap
   const [isHovered, setIsHovered] = useState(false);
 
+  // Legal modal: 'terms' | 'privacy' | null
+  const [activeModal, setActiveModal] = useState<'terms' | 'privacy' | null>(null);
+  const closeModal = () => setActiveModal(null);
+
   // Carousel
   const screenshotScrollRef = useRef<HTMLDivElement>(null);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
@@ -120,7 +124,7 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
           <motion.a 
-            href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
+            href="#download" 
             className="btn-primary get-apk-btn" 
             style={{ padding: '10px 20px', fontSize: '14px' }}
             whileHover={{ scale: 1.05 }}
@@ -146,7 +150,7 @@ function App() {
                  Spend less time managing. Spend more time growing.
               </motion.p>
               <motion.a 
-                href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
+                href="#download" 
                 className="btn-primary"
                 variants={item}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)' }}
@@ -354,6 +358,12 @@ function App() {
           <p style={{ marginTop: '12px', fontSize: '12px', color: 'var(--text-muted)', maxWidth: '400px', margin: '12px auto 0' }}>
             *If your phone blocks the installation or shows a warning, tap <strong>"More details"</strong> and select <strong>"Install anyway"</strong> to proceed.
           </p>
+          <p style={{ marginTop: '16px', fontSize: '11px', color: 'rgba(255,255,255,0.2)', maxWidth: '420px', margin: '16px auto 0' }}>
+            By downloading, you agree to our{' '}
+            <button onClick={() => setActiveModal('terms')} style={{ background: 'none', border: 'none', color: 'rgba(16,185,129,0.6)', cursor: 'pointer', fontSize: '11px', padding: 0, textDecoration: 'underline' }}>Terms &amp; Conditions</button>
+            {' '}and{' '}
+            <button onClick={() => setActiveModal('privacy')} style={{ background: 'none', border: 'none', color: 'rgba(16,185,129,0.6)', cursor: 'pointer', fontSize: '11px', padding: 0, textDecoration: 'underline' }}>Privacy Policy</button>.
+          </p>
         </div>
       </section>
 
@@ -424,32 +434,144 @@ function App() {
         </section>
 
         <footer id="contact" className="footer">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Mail size={18} />
-                <span>Need help? Contact us at</span>
+          <div className="footer-inner">
+
+            {/* Logo + tagline column */}
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <span className="glow-dot">●</span> TindaDone
               </div>
-              <a href="mailto:magharicarlwyne@gmail.com" style={{ color: '#fff', fontWeight: 'bold' }}>magharicarlwyne@gmail.com</a>
+              <p className="footer-desc">
+                Store management &amp; record-keeping for sari-sari stores and micro-businesses.
+              </p>
+              <div className="footer-socials">
+                <a href="https://www.facebook.com/crlwyn" target="_blank" rel="noreferrer" className="footer-social-link" aria-label="Facebook">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/crlwyn_/" target="_blank" rel="noreferrer" className="footer-social-link" aria-label="Instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+              </div>
             </div>
-            
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-              <Smartphone size={18} />
-              <span>Call / Text:</span> <a href="tel:09949703783" style={{ color: '#fff', fontWeight: 'bold' }}>09949703783</a>
+
+            {/* Quick links column */}
+            <div className="footer-col">
+              <h4 className="footer-col-title">Navigate</h4>
+              <ul className="footer-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#changelog">Changelog</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#download">Download</a></li>
+              </ul>
             </div>
-            
-            <div style={{ display: 'flex', gap: '16px', marginTop: '4px' }}>
-              <a href="https://www.facebook.com/crlwyn" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#10b981'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a href="https://www.instagram.com/crlwyn_/" target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#10b981'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
+
+            {/* Contact column */}
+            <div className="footer-col">
+              <h4 className="footer-col-title">Contact</h4>
+              <ul className="footer-links">
+                <li>
+                  <a href="mailto:magharicarlwyne@gmail.com">
+                    <Mail size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                    magharicarlwyne@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:09949703783">
+                    <Smartphone size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                    09949703783
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Bottom bar */}
+          <div className="footer-bottom">
+            <p>&copy; {new Date().getFullYear()} TindaDone. All rights reserved.</p>
+            <div className="footer-legal">
+              <button onClick={() => setActiveModal('terms')} className="footer-legal-btn">Terms &amp; Conditions</button>
+              <span className="footer-divider">·</span>
+              <button onClick={() => setActiveModal('privacy')} className="footer-legal-btn">Privacy Policy</button>
             </div>
           </div>
-          <p style={{ marginTop: '32px', fontSize: '14px' }}>&copy; {new Date().getFullYear()} TindaDone. All rights reserved.</p>
         </footer>
       </div>
+
+      {/* Legal Modals */}
+      <AnimatePresence>
+        {activeModal && (
+          <motion.div
+            className="legal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="legal-modal"
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="legal-modal-header">
+                <h2>{activeModal === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'}</h2>
+                <button className="legal-close" onClick={closeModal}><X size={22} /></button>
+              </div>
+              <div className="legal-modal-body">
+                {activeModal === 'terms' ? (
+                  <>
+                    <p className="legal-date">Last updated: July 2025</p>
+                    <h3>1. Acceptance of Terms</h3>
+                    <p>By downloading and using TindaDone, you agree to these Terms & Conditions. If you do not agree, please do not use the app.</p>
+                    <h3>2. Description of Service</h3>
+                    <p>TindaDone is a business management and record-keeping application designed for sari-sari stores and small businesses. It helps users manage sales, inventory, utang (credit), expenses, and daily operational reports. It is <strong>not</strong> a BIR-accredited Point-of-Sale system and does not issue official receipts.</p>
+                    <h3>3. License</h3>
+                    <p>TindaDone is provided under a commercial license. After a 7-day free trial, continued use requires the purchase of a lifetime activation key linked to a single device. The license is non-transferable and for personal/business use only.</p>
+                    <h3>4. Prohibited Use</h3>
+                    <p>You may not reverse-engineer, decompile, resell, or redistribute TindaDone or its activation keys. Any attempt to bypass or crack the licensing system is strictly prohibited.</p>
+                    <h3>5. Data Responsibility</h3>
+                    <p>All data entered into TindaDone (products, sales, customer credit records) is stored locally on your device. We are not responsible for data loss due to device failure, factory reset, or uninstallation. We strongly recommend using the app's backup feature regularly. Users are responsible for complying with any local laws or regulations applicable to their business.</p>
+                    <h3>6. Intellectual Property</h3>
+                    <p>All rights, title, logos, graphics, software, and source code of TindaDone remain the intellectual property of the developer and are protected by applicable copyright laws. Unauthorized reproduction or distribution is strictly prohibited.</p>
+                    <h3>7. Disclaimers</h3>
+                    <p>TindaDone is provided "as is" without warranties of any kind. We do not guarantee uninterrupted or error-free operation. To the fullest extent permitted by law, TindaDone shall not be liable for any indirect, incidental, or consequential damages arising from the use of the application.</p>
+                    <h3>8. Changes to Terms</h3>
+                    <p>We reserve the right to update these Terms at any time. Continued use of the app after changes constitutes acceptance of the new Terms.</p>
+                    <h3>9. Contact</h3>
+                    <p>For questions, contact us at <a href="mailto:magharicarlwyne@gmail.com">magharicarlwyne@gmail.com</a>.</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="legal-date">Last updated: July 2025</p>
+                    <h3>1. Information We Collect</h3>
+                    <p>TindaDone operates <strong>fully offline</strong>. All data you enter — including product names, prices, sales records, and customer credit information — is stored <strong>locally on your device only</strong> and is never transmitted to our servers.</p>
+                    <p>TindaDone only connects to the internet for:</p>
+                    <ul>
+                      <li>Trial validation</li>
+                      <li>License activation and verification</li>
+                    </ul>
+                    <p>During these moments, only your <strong>anonymous device identifier</strong> and <strong>activation key</strong> are transmitted for licensing purposes. No personal data, sales data, or customer data is ever sent.</p>
+                    <h3>2. Data Storage</h3>
+                    <p>All business data (inventory, transactions, customer records, reports) is stored in a local database on your Android device. We have no access to this data.</p>
+                    <h3>3. Data Sharing</h3>
+                    <p>We do not sell, rent, or share any of your data with third parties. Ever.</p>
+                    <h3>4. Data Security</h3>
+                    <p>Since your data lives on your device, its security depends on your device's security settings. We recommend enabling screen lock and using the app's backup feature to prevent data loss. If you choose to export backups yourself, you are responsible for securing those backup files.</p>
+                    <h3>5. Children's Privacy</h3>
+                    <p>TindaDone is not directed at children under 13. We do not knowingly collect information from children.</p>
+                    <h3>6. Changes to This Policy</h3>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+                    <h3>7. Contact</h3>
+                    <p>Questions about this Privacy Policy may be sent to: <a href="mailto:magharicarlwyne@gmail.com">magharicarlwyne@gmail.com</a></p>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       </>
   );
 }
