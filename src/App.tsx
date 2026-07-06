@@ -362,7 +362,6 @@ function App() {
           </div>
         </section>
 
-      <div className="container">
         <section id="faq" className="faq">
           <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
             <HelpCircle size={36} color="#10b981" /> FAQ
