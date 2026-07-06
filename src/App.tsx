@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail } from 'lucide-react';
+import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, History } from 'lucide-react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 
 function App() {
@@ -79,6 +79,7 @@ function App() {
           </div>
           <nav className="nav-links">
             <a href="#features">Features</a>
+            <a href="#changelog">Changelog</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -316,6 +317,50 @@ function App() {
           </p>
         </div>
       </section>
+
+      <div className="container">
+        <section id="changelog" className="changelog">
+          <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '40px' }}>
+            <History size={36} color="#10b981" /> Changelog
+          </h2>
+          
+          <div className="changelog-timeline">
+            {/* v1.0.2 */}
+            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <div className="changelog-version">v1.0.2 <span className="changelog-badge">Latest Update</span></div>
+              <ul className="changelog-list">
+                <li><strong>Redesigned Total Sales Breakdown:</strong> Replaced the basic gray box with a clean, modern, receipt-style layout for easier reading at a glance.</li>
+                <li><strong>Enhanced "Transactions" Section:</strong> Now clearly displays the total transaction count for the period and the average sale amount to help you track daily performance.</li>
+                <li><strong>Added Utang (Credit) Tracking to Reports:</strong> The sales breakdown now dynamically displays the total Utang Issued and Utang Collected for the period you are viewing.</li>
+                <li><strong>Streamlined UI:</strong> Unified the styling of the Cash and GCash payment pills on the cart screen for a cleaner checkout experience.</li>
+                <li><strong>Refined Aesthetics:</strong> Removed out-of-place emojis from data tables to maintain a professional, minimalist look.</li>
+                <li><strong>Bug Fixes:</strong> Resolved an issue where the "Cash on Hand" data was not properly aligning with overall sales metrics.</li>
+              </ul>
+            </motion.div>
+
+            {/* v1.0.1 */}
+            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+              <div className="changelog-version">v1.0.1</div>
+              <ul className="changelog-list">
+                <li><strong>Offline-First Improvements:</strong> Improved reliability for offline stock deductions and offline cart checkouts.</li>
+                <li><strong>Performance Enhancements:</strong> Optimized the product loading speed in the main inventory catalog.</li>
+                <li><strong>Admin Connectivity:</strong> Strengthened security and device-sync reliability with the central admin control panel.</li>
+              </ul>
+            </motion.div>
+
+            {/* v1.0.0 */}
+            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+              <div className="changelog-version">v1.0.0 <span className="changelog-badge initial">Initial Release</span></div>
+              <ul className="changelog-list">
+                <li><strong>Smart Selling:</strong> Fast cart system with quantity adjustments and Bulk Mode support.</li>
+                <li><strong>Real-Time Inventory:</strong> Track stock counts, low-stock thresholds, and visual product catalogs.</li>
+                <li><strong>Customer Utang Management:</strong> Fully functional customer credit ledger with due reminders and partial payments.</li>
+                <li><strong>Analytics & Reporting:</strong> Track daily sales, profits, and expenses offline.</li>
+                <li><strong>License Activation System:</strong> Secure 7-day trial and device ID-based premium activation.</li>
+              </ul>
+            </motion.div>
+          </div>
+        </section>
 
       <div className="container">
         <section id="faq" className="faq">
