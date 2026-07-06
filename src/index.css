@@ -120,11 +120,32 @@ h1, h2, h3, h4, .logo {
 .hero-text p {
   font-size: 20px;
   color: var(--text-muted);
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   font-weight: 400;
   max-width: 600px;
   margin-left: 0;
   margin-right: 0;
+}
+
+.hero-tagline {
+  font-size: 18px !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600 !important;
+  color: transparent !important;
+  background: linear-gradient(90deg, #10b981, #a7f3d0, #10b981);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  margin-bottom: 32px !important;
+  letter-spacing: 0.01em;
+  display: inline-block;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
 .hero-image-container {

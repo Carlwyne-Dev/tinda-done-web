@@ -1,6 +1,42 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, History } from 'lucide-react';
-import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { Download, Smartphone, BarChart3, BookOpen, ShieldCheck, HelpCircle, Mail, History, ChevronDown } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 'framer-motion';
+
+const AccordionItem = ({ title, children, isChangelog = false, badge = null, isInitialOpen = false }: any) => {
+  const [isOpen, setIsOpen] = useState(isInitialOpen);
+  
+  return (
+    <motion.div className={isChangelog ? "changelog-entry accordion-item" : "faq-item accordion-item"} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <div 
+        className={isChangelog ? "changelog-version" : "faq-header"}
+        onClick={() => setIsOpen(!isOpen)}
+        style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: isChangelog ? '0' : '0' }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: 0 }}>
+          {isChangelog ? title : <h3 style={{ margin: 0 }}>{title}</h3>} 
+          {badge}
+        </div>
+        <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+          <ChevronDown size={20} />
+        </motion.div>
+      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{ paddingTop: '16px' }}>
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 function App() {
   const { scrollY } = useScroll();
@@ -32,7 +68,7 @@ function App() {
   const [activeScreenshot, setActiveScreenshot] = useState(0);
 
   const screenshots = [
-    { src: '/terminal.jfif', alt: 'POS Terminal' },
+    { src: '/terminal.jfif', alt: 'Store Management Terminal' },
     { src: '/inventory.jfif', alt: 'Inventory Management' },
     { src: '/analytics.jfif', alt: 'Analytics Dashboard' },
     { src: '/credit.jfif', alt: 'Credit Trust Ledger' },
@@ -104,7 +140,10 @@ function App() {
                 Your Sari-Sari Store, <br />Fully Digital.
               </motion.h1>
               <motion.p variants={item}>
-                TindaDone is a premium, offline-first mobile Point-of-Sale (POS) system built for sari-sari stores and micro-businesses. Spend less time managing. Spend more time growing.
+                TindaDone is a premium, offline-first mobile store management and internal record-keeping tool built for sari-sari stores and micro-businesses.
+               </motion.p>
+               <motion.p variants={item} className="hero-tagline">
+                 Spend less time managing. Spend more time growing.
               </motion.p>
               <motion.a 
                 href="https://github.com/Carlwyne-Dev/tinda-done-web/releases/download/v1.0.2/tindadone.apk" 
@@ -155,7 +194,7 @@ function App() {
                     }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                   >
-                    <img src="/main_pic.jpg" alt="TindaDone POS" />
+                    <img src="/main_pic.jpg" alt="TindaDone App" />
                   </motion.div>
                 </div>
               ) : (
@@ -195,7 +234,7 @@ function App() {
                     }}
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                   >
-                    <img src="/main_pic.jpg" alt="TindaDone POS" />
+                    <img src="/main_pic.jpg" alt="TindaDone App" />
                   </motion.div>
                 </div>
               )}
@@ -323,34 +362,29 @@ function App() {
           <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '40px' }}>
             <History size={36} color="#10b981" /> Changelog
           </h2>
-          
           <div className="changelog-timeline">
             {/* v1.0.2 */}
-            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="changelog-version">v1.0.2 <span className="changelog-badge">Latest Update</span></div>
+            <AccordionItem isChangelog title="v1.0.2" badge={<span className="changelog-badge">Latest Update</span>}>
               <ul className="changelog-list">
                 <li><strong>Redesigned Total Sales Breakdown:</strong> Replaced the basic gray box with a clean, modern, receipt-style layout for easier reading at a glance.</li>
                 <li><strong>Enhanced "Transactions" Section:</strong> Now clearly displays the total transaction count for the period and the average sale amount to help you track daily performance.</li>
                 <li><strong>Added Utang (Credit) Tracking to Reports:</strong> The sales breakdown now dynamically displays the total Utang Issued and Utang Collected for the period you are viewing.</li>
                 <li><strong>Streamlined UI:</strong> Unified the styling of the Cash and GCash payment pills on the cart screen for a cleaner checkout experience.</li>
                 <li><strong>Refined Aesthetics:</strong> Removed out-of-place emojis from data tables to maintain a professional, minimalist look.</li>
-                <li><strong>Bug Fixes:</strong> Resolved an issue where the "Cash on Hand" data was not properly aligning with overall sales metrics.</li>
               </ul>
-            </motion.div>
+            </AccordionItem>
 
             {/* v1.0.1 */}
-            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-              <div className="changelog-version">v1.0.1</div>
+            <AccordionItem isChangelog title="v1.0.1">
               <ul className="changelog-list">
                 <li><strong>Offline-First Improvements:</strong> Improved reliability for offline stock deductions and offline cart checkouts.</li>
                 <li><strong>Performance Enhancements:</strong> Optimized the product loading speed in the main inventory catalog.</li>
                 <li><strong>Admin Connectivity:</strong> Strengthened security and device-sync reliability with the central admin control panel.</li>
               </ul>
-            </motion.div>
+            </AccordionItem>
 
             {/* v1.0.0 */}
-            <motion.div className="changelog-entry" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <div className="changelog-version">v1.0.0 <span className="changelog-badge initial">Initial Release</span></div>
+            <AccordionItem isChangelog title="v1.0.0" badge={<span className="changelog-badge initial">Initial Release</span>}>
               <ul className="changelog-list">
                 <li><strong>Smart Selling:</strong> Fast cart system with quantity adjustments and Bulk Mode support.</li>
                 <li><strong>Real-Time Inventory:</strong> Track stock counts, low-stock thresholds, and visual product catalogs.</li>
@@ -358,7 +392,7 @@ function App() {
                 <li><strong>Analytics & Reporting:</strong> Track daily sales, profits, and expenses offline.</li>
                 <li><strong>License Activation System:</strong> Secure 7-day trial and device ID-based premium activation.</li>
               </ul>
-            </motion.div>
+            </AccordionItem>
           </div>
         </section>
 
@@ -366,18 +400,27 @@ function App() {
           <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
             <HelpCircle size={36} color="#10b981" /> FAQ
           </h2>
-          <motion.div className="faq-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h3>Is TindaDone completely offline?</h3>
-            <p>Yes! Core operations like selling, inventory updates, checkout, and credit logging work 100% offline. An internet connection is only required for trial validation, license activation, and optional cloud backups.</p>
-          </motion.div>
-          <motion.div className="faq-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <h3>What happens after the 7-day trial?</h3>
-            <p>Once your trial ends, your data is securely locked but never deleted. You just need to purchase a lifetime activation key. Once entered, all your records will instantly unlock and you can continue where you left off.</p>
-          </motion.div>
-          <motion.div className="faq-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            <h3>How do I activate the app?</h3>
-            <p>After installing, you will see a unique "Device Code" on your screen. Send this code to our official Facebook page or contact email to purchase your Activation Key.</p>
-          </motion.div>
+          <AccordionItem title="Is TindaDone completely offline?">
+            <p style={{ margin: 0 }}>Yes! Core operations like selling, inventory updates, checkout, and credit logging work 100% offline. An internet connection is only required for trial validation, license activation, and optional cloud backups.</p>
+          </AccordionItem>
+          <AccordionItem title="What happens after the 7-day trial?">
+            <p style={{ margin: 0 }}>Once your trial ends, your data is securely locked but never deleted. You just need to purchase a lifetime activation key. Once entered, all your records will instantly unlock and you can continue where you left off.</p>
+          </AccordionItem>
+          <AccordionItem title="How do I activate the app?">
+            <p style={{ margin: 0 }}>After installing, you will see a unique "Device Code" on your screen. Send this code to our official Facebook page or contact email to purchase your Activation Key.</p>
+          </AccordionItem>
+        </section>
+
+        <section id="disclaimer" className="disclaimer" style={{ padding: '40px 0', textAlign: 'center', maxWidth: '800px', margin: '0 auto', color: 'var(--text-muted)' }}>
+          <h3 style={{ color: '#ef4444', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <ShieldCheck size={20} /> Disclaimer
+          </h3>
+          <p style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
+            TindaDone is a store management and internal record-keeping tool designed for sari-sari stores and small businesses. It helps users manage sales, inventory, utang, expenses, and reports for daily operations.
+          </p>
+          <p style={{ fontSize: '14px', lineHeight: '1.6', fontWeight: 500 }}>
+            TindaDone currently does not issue official BIR receipts and is not a substitute for BIR-accredited POS systems where legally required.
+          </p>
         </section>
 
         <footer id="contact" className="footer">
